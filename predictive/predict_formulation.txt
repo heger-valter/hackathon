@@ -1,0 +1,31 @@
+﻿Guessing that the three most influential factors determining the FDX stock price are the unemployment rate, international trade volume, and short term interest rates.
+Read the FDX stock price and correlate it against the unemployment rate.  
+Correlate the FDX stock price against the adjusted trade volume with China.
+Correlate against short term interest rate.  
+
+Also, we want to perform a weighted correlation so as to give recent influence more weight than a one year old influence.  
+adjustedCorrelation(FDX, unemployment_rate) = weightedCorrelation(FDX, unemployment_rate) 
+where the weight will be linear over one year.
+
+First we perform a Graham-Schmidt orthogonalization process on the input values. Hence, when we calculate trade volume, we want to work with a trade volume whose value has been adjusted in such a way that the influence of unemployment has been already folded into the calculations and will not affect this influence.    
+Hence 
+adjustedCorrolation( FDX, trade_volume) =   
+	weightedCorrelation( FDX, trade_volume) 
+	-adjustedCorrelation( FDX, unemployment_rate) 
+
+Similary 
+  
+adjustedCorrolation( FDX, interest_rate) =   
+	weightedCorrelation( FDX, interest_rate) 
+	-adjustedCorrelation( FDX, trade_volume) 
+	-adjustedCorrelation( FDX, unemployment_rate) 
+
+
+Now, we bring up the notion of a “Kalman Filter”, which is a model of a system which exhibits a defined behavior of its own as well as being subject to random influences and also is being measured at any given time.  
+
+The idea being presented in this test is to replace the traditional formulation of a “Kalman Filter” and to use NuPIC to estimate the future value of the price and to try to smooth out the statistical noise into the system.
+
+I'm sorry if the notion is a bit too intuitive and not mathematically rigorous.  I guess at this point, I am playing around with NuPIC to see how well it behaves.  I am taking a bit of a gamble in that I am winging around a notion for a infinite frequency formulation and applying a window.  I was giving thought to the window, thinking that the window function should be a Hamming Window instead.  
+
+If this goes well, the other things to try is to see if the guess of the ordering is statically supported.  The other more interesting thing is to have an adaptive influence so as to be constantly compared to other possible influences.
+
