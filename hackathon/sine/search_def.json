@@ -1,0 +1,34 @@
+{
+  "includedFields": [
+    {
+      "fieldName": "angle", 
+      "fieldType": "float"
+    }, 
+    {
+      "fieldName": "sine", 
+      "fieldType": "float"
+    }
+  ], 
+  "streamDef": {
+    "info": "sine", 
+    "version": 1, 
+    "streams": [
+      {
+        "info": "sine.csv", 
+        "source": "file://sine.csv", 
+        "columns": [
+          "*"
+        ] 
+      }
+    ] 
+  }, 
+  "inferenceType": "TemporalAnomaly", 
+  "inferenceArgs": {
+    "predictionSteps": [
+      1
+    ], 
+    "predictedField": "sine"
+  }, 
+  "swarmSize": "small"
+}
+

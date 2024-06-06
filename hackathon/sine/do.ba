@@ -1,0 +1,9 @@
+#!/bin/bash
+export NUMENTA=~/numenta
+export NUPIC=$NUMENTA/nupic
+export NUPIC_CORE=$NUMENTA/nupic.core
+export PATH=~/.local/bin:$PATH
+
+
+$NUPIC/scripts/run_swarm.py ./search_def.json --maxWorkers=2
+#https://github.com/numenta/nupic/wiki/Compiling-NuPIC-on-Ubuntu-14
